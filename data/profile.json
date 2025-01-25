@@ -1,0 +1,21 @@
+{
+    "Styles":{
+        "theme":"light",
+        "fontsize": 16,
+        "heading1": 20,
+        "heading2": 24,
+        "headingColor":"fff",
+        "fontColor": "fff",
+        "bgColor1": "#000",
+        "bgColor2": "#121212",
+        "color1": "blue",
+        "color2": "purple",
+        "bgImage":"/data/Images/bgImage.png"
+    },
+    "data":
+    {
+        "UserInfoFile": "/data/UserProfile.json",
+        "Projects": "/data/Projects.json",
+        "Experience": "/data/Experience.json"
+    }
+}
