@@ -4,18 +4,33 @@
         "fontsize": 16,
         "heading1": 20,
         "heading2": 24,
-        "headingColor":"fff",
-        "fontColor": "fff",
-        "bgColor1": "#000",
-        "bgColor2": "#121212",
-        "color1": "blue",
-        "color2": "purple",
-        "bgImage":"/data/Images/bgImage.png"
+        "light":
+        {
+
+            "headingColor":"fff",
+            "fontColor": "fff",
+            "bgColor1": "#000",
+            "bgColor2": "#121212",
+            "bgColor3": "#121212",
+            "color1": "blue",
+            "color2": "purple"
+        },
+        "dark":
+        {
+            "headingColor":"fff",
+            "fontColor": "fff",
+            "bgColor1": "#000",
+            "bgColor2": "#121212",
+            "bgColor3": "#121212",
+            "color1": "blue",
+            "color2": "purple"
+        },
+        "bgImage":"/data/Images/bgImage.png",
+        "mode": 1
     },
-    "data":
-    {
-        "UserInfoFile": "/data/UserProfile.json",
-        "Projects": "/data/Projects.json",
-        "Experience": "/data/Experience.json"
-    }
+    "data":[
+        "Experience",
+        "Projects",
+        "Journey"
+    ]
 }
