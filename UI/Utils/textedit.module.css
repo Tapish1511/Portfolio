@@ -1,0 +1,45 @@
+.AmimatedEle{
+    
+    overflow: hidden;
+    background-color: inherit;
+    border-right: 10px solid;
+    white-space: nowrap;
+    animation: GrowEle 2s steps(60, jump-both),
+    Blink 350ms step-end infinite
+}
+
+.AmimatedEle2{
+    
+    overflow: hidden;
+    background-color: inherit;
+    border-right: 10px solid;
+    white-space: nowrap;
+    animation: GrowEle2 2s steps(60, jump-both),
+    Blink 350ms step-end infinite
+}
+
+
+@keyframes Blink 
+{
+    from, to{border-right-color: rgba(127,127,127,.5);}
+    50%{border-right-color: transparent;}
+}
+
+
+
+@keyframes GrowEle 
+{
+    from{width: 0;}
+    10%{width: 0;}
+    90%{width: 100%;}
+    to{width: 100%;}
+}
+
+
+@keyframes GrowEle2
+{
+    from,to{width: 0;}
+    45%,55%{width: 100%;}
+}
+
+

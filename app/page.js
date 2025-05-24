@@ -1,17 +1,14 @@
-'use client'
-import { GetUserData, UpdateUserDataRequest } from "@/UI/Contexts/RootContext";
+import HomeBanner from "@/UI/BannerComponent/Banner";
 
+export default async function Home() {
 
-
-export default function Home() {
-  const userData = GetUserData();
 
   return(
     <>
-    <div>
-      <p>{userData?.Name}</p>
-      <button onClick={()=>{UpdateUserDataRequest({...userData, Name:"TapishK"})}}>Click Me</button>
-    </div>
+    <section>
+      
+      
+    </section>
     </>
   );
 }

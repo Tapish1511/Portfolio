@@ -1,0 +1,35 @@
+.Button, .ButtonLight{
+    position: relative;
+    overflow: hidden;
+}
+.Button:hover::before
+{
+    background-color: rgba(255,255,255,.2);
+}
+.Button:active::before
+{
+    background-color: rgba(255,255,255,.3)
+
+}
+.Button::before, .ButtonLight::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    transition: background-color ease 50ms;
+    transform: scale(1.1);
+}
+
+.ButtonLight:hover::before
+{
+    background-color: rgba(195, 195, 195, 0.2)
+
+}
+.ButtonLight:active::before
+{
+    background-color: rgba(195, 195, 195, 0.3)
+
+}

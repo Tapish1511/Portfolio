@@ -1,44 +1,33 @@
 'use client'
-import { useContext, createContext, useState, useEffect } from "react";
+import { FaSun, FaMoon } from "react-icons/fa";
+import { useContext, createContext, useState, useEffect, useLayoutEffect } from "react";
+import Button from "../Utils/Button";
 
 
 const UiContext = createContext();
-function GetAppData()
+function useGetAppData()
 {
     const data = useContext(UiContext);
-    console.log(data.appData);
+    //console.log(data.appData);
     return data.appData;
 }
 
-function GetUserData()
-{
-    const data = useContext(UiContext);
-    console.log(data.userData);
-    return data.userData;
-}
 
-async function UpdateUserDataRequest(newUserData)
-{
-    const data = useContext(UiContext);
-    await data.UpdateUserDataCtx(newUserData);
-    return data.userData;
-}
-
-async function UpdateAppDataRequest(newAppData) 
+async function useUpdateAppDataRequest(newAppData) 
 {
     const data = useContext(UiContext);
     await data.UpdateAppDataCtx(newAppData);
     return data.appData;
 }
-function isMobileView()
+function useisMobileView()
 {
     return useContext(UiContext).isMobileView;
 }
-function BaseContext({children})
+function BaseContext({children, appStyles, refresh})
 {
-    const [appData, setAppData] = useState({});
-    const [userData, setUserData] = useState({});
-    const [isMobileView, setMobileView] = useState(false);
+    const [appData, setAppData] = useState(appStyles);
+    const [isMobileView, setMobileView] = useState(2);
+
     useEffect(()=>{
         async function GetUserSettings() {
             
@@ -47,71 +36,88 @@ function BaseContext({children})
             if(data.success)
             {
                 console.log(data);
-                setUserData(data.AppData.UserData);
-                data.AppData.UserData = null;
-                delete data.AppData.UserData;
                 setAppData(data.AppData);
             }
         }
+        //GetUserSettings();
 
-        GetUserSettings();
+        
     },[]);
 
-    function CheckMobileView()
-    {
-        if(window.outerWidth <= 495)
+    useEffect(()=>{
+        if (typeof window === "undefined") return;
+        function CheckMobileView(e)
         {
-            setMobileView(true);
+            if(window.outerWidth <= 640)
+            {
+                setMobileView(0);
+            }
+            else if(window.outerWidth <= 786)
+            {
+                setMobileView(1);
+            }
+            else{
+                setMobileView(2)
+            }
+            console.log("resized: " +window.outerWidth)
         }
-        else{
-            setMobileView(false)
-        }
-    }
-
-    async function UpdateUserDataCtx(newUserData)
-    {
-        if(null == newUserData)
-            return;
-
-        const response = await fetch('/api/userdata', {
-            method: POST,
-            body: JSON.stringify(newUserData)
+        // document.addEventListener('resize', CheckMobileView);
+        // document.getElementById("tapish").addEventListener("resize", CheckMobileView);
+        //mainWindowRef.current.addEventListener("resize", CheckMobileView);
+        CheckMobileView();
+        window.addEventListener('resize', CheckMobileView);
+        return(()=>{
+            window.removeEventListener('resize', CheckMobileView)
         })
+    }, [])
 
-        const data = await response.json();
-       
-        if(data.success)
-        {
-            setUserData(data.UserData);
-        }
-    }
 
     async function UpdateAppDataCtx(newAppData)
     {
         if(null == newAppData)
             return;
 
+        //const currentData = {...appData};
+        
         const response = await fetch('/api/appdata', {
-            method: POST,
+            method: "POST",
             body: JSON.stringify(newAppData)
         })
 
         const data = await response.json();
        
-        if(data.success)
+        if(!data.success)
         {
-            setUserData(data.AppData);
+            //setUserData(currentData);
         }
+        else{
+            await refresh();
+            setAppData({Styles:{...appData.Styles, ...newAppData}})
+        }
+        
     }
 
     return(
-        <UiContext.Provider value={{isMobileView: isMobileView,appData:appData, userData:userData, UpdateUserDataCtx: UpdateUserDataCtx, UpdateAppDataCtx:UpdateAppDataCtx}}>
-            <main style={{fontSize:appData.fontsize, backgroundColor:appData.bgColor1}} className="p-1 w-full" onResize={CheckMobileView}>
+        <UiContext.Provider value={{isMobileView: isMobileView,appData:appData, UpdateAppDataCtx:UpdateAppDataCtx}}>
+            <main style={{fontSize:appData?.Styles?.fontsize,
+                color: appData?.Styles?.theme==='dark'?appData?.Styles?.dark.fontColor:appData?.Styles?.light.fontColor,
+                backgroundColor: appData?.Styles?.theme==='dark'?appData?.Styles?.dark.bgColor1:appData?.Styles?.light.bgColor1
+            }} className="w-full max-w-[2560px] m-auto min-w-[320px] min-h-screen">
                 {children}
+                <Button 
+                onClick={()=>{UpdateAppDataCtx({theme:appData?.Styles?.theme==='dark'?"light":"dark"})}} 
+                className="bottom-5 right-5 rounded-full h-12 w-12"
+                style={{minWidth:0, position:"fixed", padding:5}}
+                >
+                    <div style={{transitionDuration:'300ms'}} className={`w-full flex ${appData?.Styles?.theme==='dark'?'translate-x-[-100%]':'translate-x-0'} transition-all`}>
+                        <FaSun size={20} className="w-full min-w-full"/>
+                        <FaMoon size={20} className="w-full min-w-full"/>
+                    </div>
+                </Button>
             </main>
         </UiContext.Provider>
     )
 }
 
 export default BaseContext;
-export {GetAppData, GetUserData, UpdateAppDataRequest, UpdateUserDataRequest, isMobileView}
+export {useGetAppData, useUpdateAppDataRequest, useisMobileView}

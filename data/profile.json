@@ -2,35 +2,34 @@
     "Styles":{
         "theme":"light",
         "fontsize": 16,
+        "fontsize1":14,
         "heading1": 20,
-        "heading2": 24,
+        "heading2": 28,
         "light":
         {
 
-            "headingColor":"fff",
-            "fontColor": "fff",
-            "bgColor1": "#000",
-            "bgColor2": "#121212",
-            "bgColor3": "#121212",
-            "color1": "blue",
-            "color2": "purple"
+            "headingColor":"#000",
+            "fontColor": "#000",
+            "bgColor1": "#fff",
+            "bgColor2": "#e9f4f6",
+            "bgColor3": "#fcfcfc",
+            "bgColor4": "#fcfcfc",
+            "color1": "orange",
+            "color2": "green",
+            "colorB": "gray"
         },
         "dark":
         {
-            "headingColor":"fff",
-            "fontColor": "fff",
+            "headingColor":"#000",
+            "fontColor": "#fff",
             "bgColor1": "#000",
             "bgColor2": "#121212",
-            "bgColor3": "#121212",
+            "bgColor3": "#111111",
+            "bgColor4": "#111111",
             "color1": "blue",
-            "color2": "purple"
+            "color2": "purple",
+            "colorB": "gray"
         },
-        "bgImage":"/data/Images/bgImage.png",
-        "mode": 1
-    },
-    "data":[
-        "Experience",
-        "Projects",
-        "Journey"
-    ]
+        "mode": 0
+    }
 }

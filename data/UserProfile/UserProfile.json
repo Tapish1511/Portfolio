@@ -1,4 +1,1 @@
-{
-    "Name": "Tapish Katiyar",
-    "ProfileImage": ""
-}
+{"Name":"Tapish Katiyar","ProfileImage":"ProfileImage.png","BannerImage":"Banner.png","Greetings":"HI My Self Tapish Katiyar","Titles":["I'm a Software Developer","I'm a Web Developer"],"Description":"I specialize in C++ development, focusing on high-performance and scalable applications with expertise in MFC, Socket Programming, Multithreading, Kafka, and Redis. On the web side, I have experience with MERN stack and Next.js, building dynamic and efficient applications. With a passion for problem-solving and clean architecture, I enjoy creating robust solutions across different tech stacks.","data":["Experience","Projects"],"Programming":"C/C++, Java, JavaScript, Python C#","Tools":"Unity, Git, Kafka, Redis","Framework":"ExpressJs, ReactJs, Tkinter, NextJs","DataBase":"MySql, MongoDB, MS SQL Server","ResumeLink":"","CVLink":"kfajkdjfa"}
