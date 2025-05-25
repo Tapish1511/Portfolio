@@ -148,7 +148,7 @@ async function updateUserData(newUserData) {
     'use server'
     if(null == newUserData)
         return;
-
+    console.log(BaseAppPath);
     theUserData = newUserData;
     const worker = new Worker(BaseAppPath+process.env.DATA_FOLDER_PATH+'/FileWriter.js', {workerData:{filePath:path.resolve("./"+process.env.DATA_FOLDER_PATH+"/UserProfile/UserProfile.json"), data: theUserData}})
     // fs.writeFileSync(path.resolve("./"+process.env.DATA_FOLDER_PATH+"/UserProfile/UserProfile.json"), JSON.stringify(theUserData));
