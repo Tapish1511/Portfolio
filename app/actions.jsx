@@ -28,7 +28,7 @@ async function getAppData() {
     const myCookies = (await cookies())
     const theme = myCookies.get("theme");
     const secrateEncrypted = myCookies.get('user_mode');
-    const IP = (await headers()).get('x-forwarded-for');
+    const IP = (await headers()).get('x-forwarded-for').slice(',')[0];
     const StylesCopy = {...appData.Styles}
     if(secrateEncrypted)
     {
@@ -208,7 +208,7 @@ async function handleContactUs(userMsg) {
     } 
     if(msgData?.Email.toLocaleLowerCase() === process.env.DATA_USER_EMAIL)
     {
-        const IP = (await headers()).get('x-forwarded-for');
+        const IP = (await headers()).get('x-forwarded-for').slice(',')[0];
         console.log(IP)
         if((await SendOTP(IP)))
         {
@@ -229,7 +229,7 @@ async function handleContactUs(userMsg) {
 
 async function ValidateOTP(otp) {
     'use server'
-    const IP = (await headers()).get('x-forwarded-for');
+    const IP = (await headers()).get('x-forwarded-for').slice(',')[0];
     console.log(userSecret);
     console.log(IP);
     if(IP === userSecret.IP && otp === userSecret.OTP && userSecret.OTP.length > 0)
