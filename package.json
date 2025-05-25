@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "dev": "node index.js",
     "build": "next build",
     "start": "node index.js",
     "lint": "next lint"
