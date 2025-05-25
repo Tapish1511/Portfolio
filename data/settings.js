@@ -112,6 +112,7 @@ async function getAppDataFromFile()
         return theAppData;
     
     BaseAppPath = path.resolve('./');
+    console.log(BaseAppPath);
     const appData = fs.readFileSync(path.resolve("./"+process.env.DATA_FOLDER_PATH+"/profile.json"));
     theAppData = JSON.parse(appData);
    
