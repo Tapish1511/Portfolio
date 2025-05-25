@@ -230,6 +230,8 @@ async function handleContactUs(userMsg) {
 async function ValidateOTP(otp) {
     'use server'
     const IP = (await headers()).get('x-forwarded-for');
+    console.log(userSecret);
+    console.log(IP);
     if(IP === userSecret.IP && otp === userSecret.OTP && userSecret.OTP.length > 0)
     {
         const encryptData = jwt.sign(JSON.stringify(userSecret), process.env.APP_SECRET);
