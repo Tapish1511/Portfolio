@@ -32,28 +32,7 @@ export default async function HomeBanner({userData, appData})
     return(
         <>
         <section className="h-full w-full" style={{backgroundColor:appData?.Styles?.theme==="light"?appData?.Styles?.light.bgColor2:appData?.Styles?.dark.bgColor2}}>
-            {/* <nav className={`sticky top-0 left-0 z-10 flex items-center justify-between gap-2 px-2 sm:px-10 py-2 shadow-sm ${appData?.Styles?.theme==="light"?"shadow-slate-300":"shadow-slate-600"}`}
-                style={{backgroundColor:appData?.Styles?.theme==="light"?appData?.Styles?.light.bgColor2:appData?.Styles?.dark.bgColor2}}
-            >
-                <div className="flex items-center justify-center py-1">
-                    <ImageEdit 
-                    className="w-12 h-auto overflow-hidden rounded-[50%] aspect-square" 
-                    ImageUrl={userData?.ProfileImage} 
-                    editMode={appData?.Styles.mode}
-                    onSave={updateImageDataRequest}
-                    keyItem={"ProfileImage"}
-                    />
-                    
-                    <TextFieldEditable 
-                    editMode={appData?.Styles?.mode} 
-                    onSave={updateUserDataRequest}
-                    text = {userData?.Name}
-                    keyItem={"Name"}
-                    >
-                    </TextFieldEditable>
-                </div>
-                <Link href={"/contact"}>Contact Me</Link>
-            </nav> */}
+           
             <NavBar userData={userData} appData={appData}/>
 
             <section className="px-4 grid grid-cols-1 grid-rows-[auto] sm:grid-cols-3 py-2 sm:gap-2">
@@ -83,6 +62,7 @@ export default async function HomeBanner({userData, appData})
                     }}
                     loop
                     className="py-1 sm:mx-0 mx-auto"
+                    editMode={appData?.Styles.mode} 
                     />
                     <TextFieldEditable 
                     editMode={appData?.Styles?.mode} 
@@ -151,8 +131,8 @@ export default async function HomeBanner({userData, appData})
                     </div>
 
                     <div className="flex justify-center w-full px-1 sm:px-2 py-2 gap-2">
-                        <LinkEditable onSave={updateUserDataRequest} link={userData?.ResumeLink} keyItem={"ResumeLink"}>Resume</LinkEditable>
-                        <LinkEditable varient={"outline"} onSave={updateUserDataRequest} link={userData?.CVLink} keyItem={"CVLink"}>CV</LinkEditable>
+                        <LinkEditable editMode={appData?.Styles.mode}  onSave={updateUserDataRequest} link={userData?.ResumeLink} keyItem={"ResumeLink"}>Resume</LinkEditable>
+                        <LinkEditable editMode={appData?.Styles.mode}  varient={"outline"} onSave={updateUserDataRequest} link={userData?.CVLink} keyItem={"CVLink"}>CV</LinkEditable>
                     </div>
                 </div>
                 <div className="p-5 object-contain row-[2] sm:col-[3] sm:row-span-3">

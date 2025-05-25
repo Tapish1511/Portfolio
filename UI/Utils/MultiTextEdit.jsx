@@ -15,6 +15,7 @@ export default function MultiTextEdit({
   keyItem,
   className,
   animationTime,
+  editMode,
   loop,
 }) {
   const [editState, setEditState] = useState(-1);
@@ -131,7 +132,7 @@ export default function MultiTextEdit({
   return (
     <>
       <>
-        {appData?.Styles.mode !== 1 ? (
+        {editMode !== 1 ? (
           <>
             <div className="sm:w-fit flex px-2">
               <p

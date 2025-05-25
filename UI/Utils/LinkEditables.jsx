@@ -6,7 +6,7 @@ import buttonStyles from "./button.module.css"
 import PopUp from "./PopUp";
 import Button from "./Button";
 
-export default function LinkEditable({onCancel, link, target, children , onSave, keyItem, className, varient, style})
+export default function LinkEditable({onCancel, link, target, children , onSave, keyItem, className, varient, style, editMode})
 {
 
     const appData = useGetAppData();
@@ -104,7 +104,7 @@ export default function LinkEditable({onCancel, link, target, children , onSave,
     }
     return(
         <>
-        {appData?.Styles?.mode !== 1?
+        {editMode !== 1?
         <a href={previewLink} target={target} className={`px-3 sm:px-5 py-2 m-1 min-w-[100px] text-center rounded ${appData?.Styles?.theme==="dark"?buttonStyles.Button:buttonStyles.ButtonLight} ${className}`}
          style={
             {
